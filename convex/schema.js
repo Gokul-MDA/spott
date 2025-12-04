@@ -23,4 +23,74 @@ export default defineSchema({
     createdAt: v.number(),
     updatedAt: v.number(),
   }).index("by_token", ["tokenIdentifier"]),
+
+  events: defineTable({
+    // event
+    title: v.string(),
+    description: v.string(),
+    slug: v.string(),
+
+    // organizer
+    organizerId: v.id("users"),
+    organizerName: v.string(),
+
+    // event details
+    category: v.string(),
+    tags: v.array(v.string()),
+
+    // date
+    startDate: v.number(),
+    endDate: v.number(),
+    timezone: v.string(),
+
+    // location
+    locationType: v.union(v.literal("physical"), v.literal("online")),
+    venue: v.optional(v.string),
+    address: v.optional(v.string()),
+    city: v.string(),
+    state: v.string(),
+
+    // capacity
+    capacity: v.number(),
+    ticketType: v.union(v.literal("free"), v.literal("paid")),
+    ticketPrice: v.optional(v.number()),
+    registrationCount: v.number(),
+
+    // customization
+    coverImage: v.optional(v.string()),
+    themeColor: v.optional(v.string()),
+
+    // timestamps
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  })
+    .index("by_organizer", ["organizerId"])
+    .index("by_category", ["category"])
+    .index("by_start_date", ["startDate"])
+    .index("by_slug", ["slug"])
+    .searchIndex("search_title", { searchField: "title" }),
+
+  regustrations: defineTable({
+    eventId: v.id("events"),
+    userId: v.id("users"),
+
+    // attendee info
+    attendeeName: v.string(),
+    attendeeEmail: v.string(),
+
+    // qr code for entry
+    qrCode: v.string(),
+
+    // check in
+    checkedIn: v.boolean(),
+    checkedInAt: v.optional(v.number()),
+
+    // status
+    status: v.union(v.literal("confirmed"), v.literal("cancelled")),
+    registeredAt: v.number(),
+  })
+    .index("by_event", ["eventId"])
+    .index("by_user", ["userId"])
+    .index("by_event_user", ["eventId", "userId"])
+    .index("by_qr_code", ["qrCode"]),
 });
