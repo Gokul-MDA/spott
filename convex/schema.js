@@ -45,10 +45,11 @@ export default defineSchema({
 
     // location
     locationType: v.union(v.literal("physical"), v.literal("online")),
-    venue: v.optional(v.string),
+    venue: v.optional(v.string()),
     address: v.optional(v.string()),
     city: v.string(),
     state: v.string(),
+    country: v.string(),
 
     // capacity
     capacity: v.number(),
