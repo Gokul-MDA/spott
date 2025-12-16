@@ -8,7 +8,7 @@
  * @module
  */
 
-import type * as event from "../event.js";
+import type * as explore from "../explore.js";
 import type * as seed from "../seed.js";
 import type * as users from "../users.js";
 
@@ -19,7 +19,7 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
-  event: typeof event;
+  explore: typeof explore;
   seed: typeof seed;
   users: typeof users;
 }>;

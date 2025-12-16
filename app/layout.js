@@ -4,6 +4,7 @@ import Header from "@/components/header";
 import { ConvexClientProvider } from "./ConvexClientProvider";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata = {
   title: "Create Next App",
@@ -42,6 +43,7 @@ export default function RootLayout({ children }) {
                 <footer className="border-t border-gray-800/50 py-8 px-6 max-w-7xl mx-auto">
                   <div className="text-sm text-gray-400">Testing Project</div>
                 </footer>
+                <Toaster richColors />
               </main>
             </ConvexClientProvider>
           </ClerkProvider>
