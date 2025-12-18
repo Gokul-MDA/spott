@@ -39,8 +39,6 @@ export default function OnboardingModal({ isOpen, onClose, onComplete }) {
     api.users.completeOnboarding
   );
 
-  console.log(isLoading, "load");
-
   // Get Indian states
   const indianStates = useMemo(() => {
     return State.getStatesOfCountry("IN");
